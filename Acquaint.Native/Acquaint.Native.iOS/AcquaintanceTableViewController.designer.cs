@@ -11,11 +11,11 @@ using UIKit;
 
 namespace Acquaint.Native.iOS
 {
-	[Register ("AcquaintanceTableViewController")]
-	partial class AcquaintanceTableViewController
-	{
-		void ReleaseDesignerOutlets ()
-		{
-		}
-	}
+    [Register ("AcquaintanceTableViewController")]
+    partial class AcquaintanceTableViewController
+    {
+        void ReleaseDesignerOutlets ()
+        {
+        }
+    }
 }
