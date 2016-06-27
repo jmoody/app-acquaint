@@ -1,6 +1,8 @@
 ﻿using Foundation;
 using HockeyApp;
 using UIKit;
+using System;
+using XamarinShowTouches;
 
 namespace Acquaint.Native.iOS
 {
@@ -9,8 +11,17 @@ namespace Acquaint.Native.iOS
 	[Register("AppDelegate")]
 	public class AppDelegate : UIApplicationDelegate
 	{
-		// The Window property. The root of the app's UI hierarchy.
-		public override UIWindow Window { get; set; }
+	
+        static ShowTouchesWindow theWindow;
+        public override UIWindow Window {
+            get{if (theWindow == null) {
+                    theWindow = new ShowTouchesWindow (UIScreen.MainScreen.Bounds);
+                    theWindow.AlwaysShowTouches = true;
+                }
+                return theWindow;
+            }
+            set {}
+        }
 
 		// A reference to the Main.storyboard
 	    private static readonly UIStoryboard Storyboard = UIStoryboard.FromName("Main", null);
@@ -41,6 +52,17 @@ namespace Acquaint.Native.iOS
 
 			// this makes the Window the primary window in the iOS window hierarchy and displays it
 			Window.MakeKeyAndVisible();
+
+
+            if (Runtime.Arch == Arch.DEVICE)
+            {
+                Console.WriteLine("Loading calabash dylib from applicaiton bundle.");
+                string fileName = "libCalabashDynFAT.dylib";
+                string dylib = Path.Combine(NSBundle.MainBundle.BundlePath, fileName);
+                Dlfcn.dlopen(dylib, 0);
+            } else {
+                Console.WriteLine("Skipping calabash dylib loading; will inject at runtime.");
+            }
 
 			return true;
 		}
