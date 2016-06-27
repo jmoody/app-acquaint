@@ -1,6 +1,8 @@
 ﻿using Foundation;
 using HockeyApp;
 using UIKit;
+using System.IO;
+using ObjCRuntime;
 using System;
 using XamarinShowTouches;
 
@@ -34,10 +36,7 @@ namespace Acquaint.Native.iOS
 			manager.Configure("11111111222222223333333344444444"); // This is just a dummy value. Replace with your real HockeyApp App ID
 			manager.StartManager();
 
-		    #if ENABLE_TEST_CLOUD
-		    Xamarin.Calabash.Start();
-		    #endif
-
+		   
 			// intantiate a new instance of Window with the device's screen bounds
 			Window = new UIWindow(UIScreen.MainScreen.Bounds);
 
@@ -56,7 +55,7 @@ namespace Acquaint.Native.iOS
 
             if (Runtime.Arch == Arch.DEVICE)
             {
-                Console.WriteLine("Loading calabash dylib from applicaiton bundle.");
+                Console.WriteLine("Loading calabash dylib from application bundle.");
                 string fileName = "libCalabashDynFAT.dylib";
                 string dylib = Path.Combine(NSBundle.MainBundle.BundlePath, fileName);
                 Dlfcn.dlopen(dylib, 0);
