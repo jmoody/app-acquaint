@@ -172,3 +172,15 @@ FakesAssemblies/
 
 # .vs folder
 .vs/
+
+# emacs and vim
+(.*/)?\#[^/]*\#$
+*.swp
+*.swo
+
+# calabash
+Gemfile.lock
+screenshot_*.png
+.irb-history
+.pry-history
+
