@@ -50,7 +50,14 @@ namespace Acquaint.Native.iOS
 		{
 			if (Acquaintance != null)
 			{
-				// set the title and label text properties
+			
+                EasterEgg.AccessibilityIdentifier = "easter egg";
+
+                EasterEgg.TouchUpInside += (sender, e) => {
+                    DisplayErrorAlertView("Easter Egg", "You found me! This alert appeared because you touched the 2x2 point invisible button." );
+                };
+
+                // set the title and label text properties
 				Title = Acquaintance.DisplayName;
 				CompanyNameLabel.Text = Acquaintance.Company;
 				JobTitleLabel.Text = Acquaintance.JobTitle;
