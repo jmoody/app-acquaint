@@ -13,7 +13,7 @@ namespace Acquaint.Native.iOS
 	[Register("AppDelegate")]
 	public class AppDelegate : UIApplicationDelegate
 	{
-	
+	    
         static ShowTouchesWindow theWindow;
         public override UIWindow Window {
             get{if (theWindow == null) {
@@ -53,15 +53,10 @@ namespace Acquaint.Native.iOS
 			Window.MakeKeyAndVisible();
 
 
-            if (Runtime.Arch == Arch.DEVICE)
-            {
-                Console.WriteLine("Loading calabash dylib from application bundle.");
-                string fileName = "libCalabashDynFAT.dylib";
-                string dylib = Path.Combine(NSBundle.MainBundle.BundlePath, fileName);
-                Dlfcn.dlopen(dylib, 0);
-            } else {
-                Console.WriteLine("Skipping calabash dylib loading; will inject at runtime.");
-            }
+            Console.WriteLine("Loading calabash dylib from application bundle.");
+            string fileName = "libCalabashFAT.dylib";
+            string dylib = Path.Combine(NSBundle.MainBundle.BundlePath, fileName);
+            Dlfcn.dlopen(dylib, 0);
 
 			return true;
 		}

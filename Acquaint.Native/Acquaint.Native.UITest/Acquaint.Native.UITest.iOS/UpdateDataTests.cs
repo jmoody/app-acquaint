@@ -25,9 +25,9 @@ namespace Acquaint.Native.UITest.iOS
 			// installed. To start the Test Cloud Agent the following code should be
 			// added to the FinishedLaunching method of the AppDelegate:
 			//
-			//    #if ENABLE_TEST_CLOUD
-			//    Xamarin.Calabash.Start();
-			//    #endif
+			    #if ENABLE_TEST_CLOUD
+			    Xamarin.Calabash.Start();
+			    #endif
 			//
 			// ^^^ THIS IS THE WAY THE ACQUAINT APP IS SETUP FOR UITESTS ^^^
 
